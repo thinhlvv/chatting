@@ -1,0 +1,13 @@
+<h1> Chat Rooms </h1>
+<%= form_for @room do |f| %>
+	<% if @room.errors.size > 0 %>
+		<div class='alert alert-error'> <%= @room.errors.full_messages.to_sentence %> </div>
+	<% end %>
+	<div class='card card-block'>
+			<div class='form-group'>
+			<%= f.label :name %>
+			<%= f.text_field :name, class:'form-control' %>
+			<%= f.submit %> 
+		</div>
+	<div>
+<% end %>
