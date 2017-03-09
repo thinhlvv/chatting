@@ -1,13 +1,15 @@
 <h1> Chat Rooms </h1>
+<% @rooms.each do |room| %>
+<div class="form-group">
+	<%= link_to room.name, room %>
+</div> 
+<% end %>
 <%= form_for @room do |f| %>
-	<% if @room.errors.size > 0 %>
-		<div class='alert alert-error'> <%= @room.errors.full_messages.to_sentence %> </div>
+				<% if @room.errors.size > 0 %>
+					<div class='alert alert-danger fade show'> <%= @room.errors.full_messages.to_sentence %> </div>
 	<% end %>
-	<div class='card card-block'>
-			<div class='form-group'>
-			<%= f.label :name %>
-			<%= f.text_field :name, class:'form-control' %>
+		<div class="form-group">
+			<%= f.text_field :name %>
 			<%= f.submit %> 
 		</div>
-	<div>
 <% end %>
