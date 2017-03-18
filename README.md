@@ -27,8 +27,8 @@
 
 ### Milestone 3: set up client-server WebSocket communication.
 
-- [ ] Generate a `messages`channel. Inside MessagesChannel, add `stream_from "chat"` under `def subscribed`.
-- [ ] Add the following code for the server to receive data from clients:
+- [x] Generate a `messages`channel. Inside MessagesChannel, add `stream_from "chat"` under `def subscribed`.
+- [x] Add the following code for the server to receive data from clients:
 
   ```
   # note it's 'receive', not 'received'
@@ -37,8 +37,8 @@
   end
   ```
 
-- [ ] Go to `app/assets/javascripts/channels/message.coffee` and add `console.log("connected")` under the `connected` function. Reload the browser, open Inspector Console and make sure you see the message.
-- [ ] Still in Inspector Console, send a message to the server by typing `App.messages.send({message: "hello"})`. Check Rails server log, make sure you see this:
+- [x] Go to `app/assets/javascripts/channels/message.coffee` and add `console.log("connected")` under the `connected` function. Reload the browser, open Inspector Console and make sure you see the message.
+- [x] Still in Inspector Console, send a message to the server by typing `App.messages.send({message: "hello"})`. Check Rails server log, make sure you see this:
 
   ```
   # rails server log
@@ -48,18 +48,18 @@
 
   ** You just got Server to receive messages from Client! ** Now let's make Server broadcast the same messages to all other clients.
 
-- [ ] Update `MessagesChannel#receive` to broadcast the same data to all clients under the stream `"chat"` (HINT: `ActionCable.server.broadcast`)
-- [ ] Inside `received: (data) ->` function, add CoffeeScript to print data to console: `console.log("client receives ", data)`
+- [x] Update `MessagesChannel#receive` to broadcast the same data to all clients under the stream `"chat"` (HINT: `ActionCable.server.broadcast`)
+- [x] Inside `received: (data) ->` function, add CoffeeScript to print data to console: `console.log("client receives ", data)`
 
 ![](http://g.recordit.co/x63FZAwU4G.gif)
 
-- [ ] Insert `data.message` as HTML at the beginning of your `<div class="messages">...</div>` text (HINT: use jQuery's `.prepend`). Test sending `App.messages.send({message: "hello"})`and make sure another browser receives new message content.
+- [x] Insert `data.message` as HTML at the beginning of your `<div class="messages">...</div>` text (HINT: use jQuery's `.prepend`). Test sending `App.messages.send({message: "hello"})`and make sure another browser receives new message content.
 
 Please show your TAs/Teacher your work.
 
 ### Milestone 4: broadcast new messages to all clients in `MessagesController#create`
 
-- [ ] In `MessagesController#create`, after a message is saved, broadcast `{message: @message.body}` to the `chat` stream.
+- [x] In `MessagesController#create`, after a message is saved, broadcast `{message: @message.body}` to the `chat` stream.
 
 Verify:
 
@@ -69,7 +69,7 @@ Verify:
 - Browser B receives updates via Web Socket and also displays the latest messages.
 - If A sends more messages, B continues to render them but they look ugly.
 
-- [ ] Let's make the message pretty. Create a `render_message(message)` private method in `MessagesController`. Then broadcast `data: render_message(@message)` instead.
+- [x] Let's make the message pretty. Create a `render_message(message)` private method in `MessagesController`. Then broadcast `data: render_message(@message)` instead.
 
   ```ruby
   def render_message(message)

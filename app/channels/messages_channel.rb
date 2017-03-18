@@ -11,4 +11,9 @@ class MessagesChannel < ApplicationCable::Channel
     #Rails.logger.info("MessagesChannel got: #{data.inspect}")
     ActionCable.server.broadcast('chat', data)
   end
+  
+  def render_message(message)
+    ApplicationController.render(partial: 'messages/message', locals: {message: message})
+  end
+
 end

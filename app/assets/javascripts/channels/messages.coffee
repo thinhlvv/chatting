@@ -9,5 +9,5 @@ App.messages = App.cable.subscriptions.create "MessagesChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     console.log("client receives ", data)
-    $(".messages").prepend('<div class="message">' + data.message + '</div>')
+    $(".messages").prepend("<div class='card'>" + data + "</div>")
 
