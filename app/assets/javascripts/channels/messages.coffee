@@ -1,4 +1,7 @@
 App.messages = App.cable.subscriptions.create "MessagesChannel",
+  create: (data) ->
+    @perform("create", message: data)
+
   connected: ->
     # Called when the subscription is ready for use on the server
     console.log("Fconnected")
@@ -9,5 +12,5 @@ App.messages = App.cable.subscriptions.create "MessagesChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     console.log("client receives ", data)
-    $(".messages").prepend("<div class='card'>" + data + "</div>")
+    $(".messages").prepend("<div class='message'>" + data + "</div>")
 
